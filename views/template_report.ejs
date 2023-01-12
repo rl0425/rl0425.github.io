@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Clovine</title>
+
+    <!--공통 css-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/StandardForm.css' />
+    <link rel='stylesheet' href='/stylesheets/PublicStyle.css' />
+    <link rel='stylesheet' href='/stylesheets/PublicModal.css' />
+    <link rel='stylesheet' href='/stylesheets/public.css' />
+
+
+    <!--jquery css-->
+    <link rel='stylesheet' href='/libraries/TreeGrid/jquery-ui-themes-1.12.1/themes/base/jquery-ui.css' />
+
+    <!--TreeGrid css-->
+    <link rel='stylesheet' href='/libraries/TreeGrid/fancytree-2.31.0/dist/skin-win8/ui.fancytree.css' />
+
+    <!--Report css-->
+    <link rel='stylesheet' href='/stylesheets/Template/Report/public_report_style.css' />
+    <link rel='stylesheet' href='/stylesheets/Template/Report/template_report.css' />
+
+
+
+    <script src="/libraries/jquery-3.4.1.min.js"></script>
+    <!--드래그 드롭 하려면 필요함-->
+    <script src="/libraries/jquery-ui-1.11.4.min.js"></script>
+    <script src="/libraries/TreeGrid/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!--날짜-->
+    <script src="/libraries/moment.min.js"></script>
+
+    <!--공통 js-->
+    <script src="/javascripts/SideBar.js"></script>
+    <script src="/javascripts/module.js"></script>
+    <script src="/javascripts/NewModal.js"></script>
+    <script src="/libraries/jquery.cookie.js"></script>
+    <script src="/libraries/Sortable.js"></script>
+    <script src="/javascripts/toast_msg.js"></script>
+    <script src="/javascripts/ApprovalBoxModal.js"></script>
+    <script src="/javascripts/Notice/AlertModal.js"></script>
+    <script src="/javascripts/File/ProcessStatusModal.js"></script>
+    <script src="/javascripts/Library/modal.js"></script>
+    <script src="/javascripts/j_public_css.js"></script>
+    <!--프로젝트 템플릿을 사용한 프로젝트 생성-->
+    <script src="/javascripts/Project/Project/j_project_project_create.js"></script>
+
+    <!-- service -->
+    <script src="/javascripts/j_service.js"></script>
+    <script src="/javascripts/Notification/j_mailing_service.js"></script>
+
+    <!-- Log, Reminder, Sync -->
+    <script src="/javascripts/j_log.js"></script>
+    <script src="/javascripts/j_reminder.js"></script>
+    <script src="/javascripts/j_sync.js"></script>
+
+    <!-- File -->
+    <script src='/javascripts/File/File.js'></script>
+    <script src='/javascripts/File/j_File.js'></script>
+    <script src='/javascripts/File/j_isOkFiles.js'></script>
+    <script src='javascripts/File/j_FileServer.js'></script>
+
+    <script type="text/javascript"
+            src="/libraries/es6-promise-master/lib/es6-promise/es6-promise.min.js"></script>
+    <script type="text/javascript"
+            src="/libraries/es6-promise-master/lib/es6-promise/es6-promise.auto.min.js"></script>
+
+    <script src="/javascripts/sideBar/membertree.js"></script>
+    <script src="/javascripts/Member/MemberAjax.js"></script>
+    <script src="/javascripts/Member/MemberFunction.js"></script>
+    <script src="/javascripts/Member/AddMemberModal.js"></script>
+    <script src="/javascripts/Member/TaskMemberAddModal.js"></script>
+    <script src="/javascripts/Setting/SettingAjax.js"></script>
+
+    <script src="/javascripts/Template/Report/j_template_report.js"></script>
+
+    <script>
+        const path = '<%= path %>';                         // Path
+                                 // Timeout
+        var lang = <%- lang %>;                             // Language Pack
+
+    </script>
+</head>
+<body>
+
+<div class="public_body_container">
+    <!-- 전체 헤더 영역 -->
+    <header>
+        <!--왼쪽 사이드바-->
+        <div id="PublicSideBar"></div>
+        <!--오른쪽 Head-->
+        <div id="PublicRightHead">
+            <h2 id="project-title"><%= JSON.parse(lang).TemplateRelationUI33 %></h2>
+        </div>
+        <!-- Template 페이지 tab -->
+        <div id="PublicMainContents"></div>
+    </header>
+    <!-- Main 영역 -->
+    <main>
+        <!-- main 전체 영역 -->
+        <div id="ProjectCategoryView" style="height: 100%;">
+            <article class="main_article">
+                <section>
+                    <div class="main_header_area" >
+                        <h3><%= JSON.parse(lang).TemplateReportMainUI1 %></h3>
+                        <div>
+                            <img class="create_button_image" id="btn_create_category" title='<%= JSON.parse(lang).TemplateReportMainUI3 %>' alt="">
+                            <img class="remove_button_image" id="btn_delete_category" title='<%= JSON.parse(lang).TemplateReportMainUI6 %>' alt="">
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="">
+                        <ul id="category_list" class="template_category_list">
+                        </ul>
+                    </div>
+
+                </section>
+
+            </article>
+            <article class="main_article">
+                <section>
+                    <div class="main_header_area" style="border: none;margin: 0 0 0 24px">
+                        <h3 class="template_title"><%= JSON.parse(lang).TemplateReportMainUI2 %></h3>
+                    </div>
+
+                    <div style="height: 100%; margin: 0 0 0 24px; width: calc(100% - 24px); display: flex; align-items: center; justify-content: space-between;">
+
+                        <div style="float: left;display: flex;justify-content: flex-start;">
+                            <input id="btn_copy_template_report"  style="margin: 0px 8px 0px 0px"  class="function_button" value='<%= JSON.parse(lang).TemplateReportMainUI5 %>' title='<%= JSON.parse(lang).TemplateReportMainUI5 %>' type="button">
+                            <input id="btn_update_template_report"  style="margin: 0px 0px 0px 0px" class="function_button" value='<%= JSON.parse(lang).TemplateReportMainUI4 %>' title='<%= JSON.parse(lang).TemplateReportMainUI4 %>' type="button">
+                        </div>
+
+                        <div>
+                            <div class="public_search" style="width: 250px; float: left;margin-right: 24px;">
+                                <input type="text" id="TemplateSearchInput" placeholder="<%= JSON.parse(lang).TemplateReportMainUI12 %>" value="" onfocus="focusOnSearchGroup(this)" oninput="CheckInputLengthByObject(this)" onblur="focusOffSearchGroup(this)">
+                                <img  id="TemplateSearchOkBtn" class="PublicHoverMiddleIconSize" style="cursor: pointer;" alt="Search">
+                            </div>
+
+                            <input id="btn_create_template_report_open" class="public_button full" value='<%= JSON.parse(lang).TemplateReportMainUI3 %>' title='<%= JSON.parse(lang).TemplateReportMainUI3 %>' type="button">
+                            <input id="btn_delete_template_report"  style="margin: 0px 0px 0px 0px" class="public_button empty" value='<%= JSON.parse(lang).TemplateReportMainUI6 %>' title='<%= JSON.parse(lang).TemplateReportMainUI6 %>' type="button">
+                        </div>
+
+                    </div>
+                </section>
+                <section>
+                    <div class="content_list_area">
+                        <table class="template_report_table PublicTable">
+                            <colgroup>
+                                <col width="70%">
+                                <col width="20%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <td><%= JSON.parse(lang).TemplateReportMainUI7 %></td>
+                                <td><%= JSON.parse(lang).TemplateReportMainUI8 %></td>
+                                <td><%= JSON.parse(lang).TemplateReportMainUI9 %></td>
+                            </tr>
+                            </thead>
+                            <tbody id="template_report_list">
+                            </tbody>
+
+                        </table>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+
+
+
+
+</div>
+</body>
+
+</html>
